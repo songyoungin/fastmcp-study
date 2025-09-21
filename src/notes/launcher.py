@@ -50,7 +50,7 @@ def search_notes(query: str, top_k: int) -> Dict[str, Union[List[str], int]]:
     Returns:
         A dictionary containing the matches and the total number of matches.
     """
-    logger.info("Searching for notes: query=%s, top_k=%s", query, top_k)
+    logger.debug("Searching for notes: query=%s, top_k=%s", query, top_k)
     hits = [t for t in _NOTES if query.lower() in t.lower()]
     logger.debug("Search results: %s", hits)
     return {"matches": hits[:top_k], "count": len(hits)}
@@ -63,12 +63,12 @@ def get_notes() -> Dict[str, List[str]]:
     Returns:
         A dictionary containing the notes.
     """
-    logger.info("Getting all notes...")
+    logger.debug("Getting all notes...")
     notes = _NOTES
     logger.debug("Total count: %s", len(notes))
     return {"notes": notes}
 
 
 if __name__ == "__main__":
-    logger.info("MCP notes server starting...")
+    logger.debug("MCP notes server starting...")
     mcp.run(transport="stdio")
