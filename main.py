@@ -22,6 +22,13 @@ mcp = FastMCP("demo")
 
 @mcp.tool
 def add(a: int, b: int) -> int:
+    """Add two numbers.
+    Args:
+        a: The first number.
+        b: The second number.
+    Returns:
+        The sum of the two numbers.
+    """
     logger.debug("add called with a=%s, b=%s", a, b)
     result = a + b
     logger.debug("add result=%s", result)
