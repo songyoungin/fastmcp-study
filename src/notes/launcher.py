@@ -56,6 +56,19 @@ def search_notes(query: str, top_k: int) -> Dict[str, Union[List[str], int]]:
     return {"matches": hits[:top_k], "count": len(hits)}
 
 
+@mcp.tool
+def get_notes() -> Dict[str, List[str]]:
+    """Get all notes.
+
+    Returns:
+        A dictionary containing the notes.
+    """
+    logger.info("Getting all notes...")
+    notes = _NOTES
+    logger.debug("Total count: %s", len(notes))
+    return {"notes": notes}
+
+
 if __name__ == "__main__":
     logger.info("MCP notes server starting...")
     mcp.run(transport="stdio")
