@@ -19,11 +19,7 @@ logger.propagate = False
 mcp = FastMCP("files")
 
 # configure whitelist
-WHITELIST = [
-    pathlib.Path(
-        "/Users/serena/Documents/development/private/fastmcp-study/documents"
-    ).resolve()
-]
+WHITELIST = [(pathlib.Path(__file__).parent.parent.parent / "documents").resolve()]
 
 
 def _resolve_safe(path: str) -> pathlib.Path:
