@@ -3,7 +3,7 @@ import io
 import logging
 import pathlib
 import re
-from typing import List, Optional, Dict, Any
+from typing import Any
 from fastmcp import FastMCP
 from pydantic import BaseModel, Field
 
@@ -41,7 +41,7 @@ def _resolve_safe(path: str) -> pathlib.Path:
 
 class ListFilesArgs(BaseModel):
     dir_path: str = Field(description="The path to the directory to list files from.")
-    pattern: Optional[str] = Field(
+    pattern: str | None = Field(
         default=None, description="The pattern to filter files by."
     )
     max_files: int = Field(
@@ -51,7 +51,7 @@ class ListFilesArgs(BaseModel):
 
 class ListFilesResult(BaseModel):
     count: int = Field(description="The number of files that were listed.")
-    files: List[str] = Field(description="The files that were listed.")
+    files: list[str] = Field(description="The files that were listed.")
 
 
 @mcp.tool
@@ -78,7 +78,7 @@ def list_files(args: ListFilesArgs) -> ListFilesResult:
 
 class ReadTextArgs(BaseModel):
     path: str = Field(description="The path to the file to read.")
-    length: Optional[int] = Field(
+    length: int | None = Field(
         default=None,
         description="The length to read. If not provided, the entire file will be read.",
     )
@@ -133,7 +133,7 @@ class GrepArgs(BaseModel):
 class GrepResult(BaseModel):
     path: str = Field(description="The path to the file that was grepped.")
     query: str = Field(description="The query that was grepped for.")
-    hits: List[Dict[str, Any]] = Field(description="The hits that were found.")
+    hits: list[dict[str, Any]] = Field(description="The hits that were found.")
 
 
 @mcp.tool

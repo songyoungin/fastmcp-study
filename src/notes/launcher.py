@@ -5,7 +5,7 @@ Notes are stored in memory and can be added, searched.
 
 import sys
 import logging
-from typing import Dict, List, Union
+from typing import Union
 from fastmcp import FastMCP
 
 # configure logger
@@ -20,11 +20,11 @@ logger.propagate = False
 mcp = FastMCP("notes")
 
 # initialize notes in memory
-_NOTES: List[str] = []
+_NOTES: list[str] = []
 
 
 @mcp.tool
-def add_note(note: str) -> Dict[str, int]:
+def add_note(note: str) -> dict[str, int]:
     """Add a note to the notes list.
 
     Args:
@@ -40,7 +40,7 @@ def add_note(note: str) -> Dict[str, int]:
 
 
 @mcp.tool
-def search_notes(query: str, top_k: int) -> Dict[str, Union[List[str], int]]:
+def search_notes(query: str, top_k: int) -> dict[str, Union[list[str], int]]:
     """Search for notes matching the query.
 
     Args:
@@ -57,7 +57,7 @@ def search_notes(query: str, top_k: int) -> Dict[str, Union[List[str], int]]:
 
 
 @mcp.tool
-def get_notes() -> Dict[str, List[str]]:
+def get_notes() -> dict[str, list[str]]:
     """Get all notes.
 
     Returns:
